@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import Home from './components/Home'
 // import Nav from './Nav';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Err from './components/Err';
 
 let router = createBrowserRouter([
     {
@@ -15,6 +17,14 @@ let router = createBrowserRouter([
     {
         path:'signup',
         element:<SignUp/>
+    },
+    {
+        path:'home',
+        element:<Home/>
+    },
+    {
+        path:'err',
+        element:<Err/>
     }
  ])
 
