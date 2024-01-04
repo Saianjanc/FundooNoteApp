@@ -1,4 +1,4 @@
-import '../assets/login.css';
+// import '../assets/login.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import axios  from 'axios';
@@ -18,24 +18,24 @@ function Login(){
     }
     return(
         <>
-        <div className='outer-ctn'>
-            <div className='login-ctn'>
-                <div className='login-title'>
-                <h2>Fundoo</h2>
-                <h3>Sign in</h3>
-                <p>Use your Fundoo Account</p>
+        <div className='flex h-[735px] w-full flex-col items-center justify-center' >
+            <div className='w-[30%] h-[465px] flex flex-col items-center gap-[30px] border rounded-[10px] border-solid border-[#7777]'>
+                <div className='text-center'>
+                <h2 className='text-[26px] font-medium text-[orange] m-[20px]'>Fundoo</h2>
+                <h3 className='text-2xl font-medium m-0'>Sign in</h3>
+                <p className='mt-[5px]'>Use your Fundoo Account</p>
                 </div>
-                <TextField className="email" id="email" variant="outlined" label="Email or Phone" required />
-                <div className='ln-pass-ctn'>
-                <TextField id='password' className="login-password" type="password" label="Password" required />
+                <TextField className="w-4/5" id="email" variant="outlined" label="Email or Phone" required />
+                <div className='w-4/5 flex flex-col'>
+                <TextField id='password' className="w-full" type="password" label="Password" required />
                 <a href='../index.js'>Forgot Password</a>
                 </div>
-                <div className='btn-ctn'>
+                <div className='w-4/5 flex justify-between items-center'>
                     <Link to="/signup">Create account</Link>
                     <Button onClick={chkUser} variant="contained" className="login-btn">Login</Button>
                 </div>
             </div>
-            <div className='login-bodyfooter'>
+            <div className='w-[30%] flex text-sm justify-between'>
                         <div><p>English(United States)</p></div>
                         <div><pre>Help      Privacy     Terms</pre></div>
             </div>
