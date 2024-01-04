@@ -10,7 +10,7 @@ function Login(){
                 <div className='login-title'>
                 <h2>Fundoo</h2>
                 <h3>Sign in</h3>
-                <p>Use your Fundoo Account</p
+                <p>Use your Fundoo Account</p>
                 </div>
                 <TextField className="email" variant="outlined" label="Email or Phone" required />
                 <div className='ln-pass-ctn'>
