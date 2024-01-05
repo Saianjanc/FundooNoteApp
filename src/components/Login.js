@@ -1,4 +1,3 @@
-// import '../assets/login.css';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import axios  from 'axios';
@@ -16,7 +15,7 @@ function Login(){
             navigate("home")
         }).catch(error => {
             const err = error.response.data.error.message
-            navigate(`/${err}`)
+            navigate(`/err/${err}`)
           });
     }
     return(

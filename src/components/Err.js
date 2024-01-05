@@ -5,9 +5,12 @@ function Err(){
     const { err } = useParams()
     const [count, setCount] = useState(8)
     useEffect(()=>{
-        setTimeout(()=>{navigate('/')},8000)
         setTimeout(()=>{setCount((count) => count - 1)},1000)
-    },[navigate, count])
+        if (count===0) {
+            clearTimeout()
+            navigate("/")
+        }
+    },[navigate,count])
     return(<><h1 className="text-3xl mt-20 text-center">{err}, Please Check!</h1><p className="text-3xl mt-20 text-center">Redirecting to Login in {count}s</p></>)
 }
 export default Err

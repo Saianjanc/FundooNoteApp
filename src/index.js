@@ -4,10 +4,10 @@ import './index.css';
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Home from './components/Home'
-// import Nav from './Nav';
+import Err from './components/Err';
+import NotFound from './components/NotFound';
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Err from './components/Err';
 
 let router = createBrowserRouter([
     {
@@ -23,8 +23,12 @@ let router = createBrowserRouter([
         element:<Home/>
     },
     {
-        path:':err',
+        path:'err/:err',
         element:<Err/>
+    },
+    {
+        path:'*',
+        element:<NotFound/>
     }
  ])
 
