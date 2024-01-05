@@ -21,8 +21,9 @@ function SignUp() {
             console.log(res);
             navigate("/home")
         }).catch(error => {
-            navigate("/err")
-          });;
+            const err = error.response.data.error.details.messages.email[0]
+            navigate(`/${err}`)
+          });
     }
 
     return (
@@ -30,7 +31,7 @@ function SignUp() {
             <div className="w-full h-[735px] flex flex-col justify-center items-center">
                 <div className="flex justify-center">
                     <div className="flex border p-10 rounded-[10px] border-solid border-[#7777]">
-                        <div className="flex w-3/5 flex-col justify-center gap-[30px]">
+                        <form onSubmit={e => {e.preventDefault(); createUser()}} className="flex w-3/5 flex-col justify-center gap-[30px]">
                         <label className="text-3xl text-[orange]">Fundoo</label>
                         <label className="text-2xl">Create your Fundoo Account</label>
                         <div className="flex justify-between">
@@ -49,10 +50,10 @@ function SignUp() {
                                             <label>Use 8 or more characters with mix of letters, numbers & symbols</label>
                                     </div>
                                     <div className="w-full flex justify-between items-center">
-                                        <Link to="/">Sign in instead</Link>
-                                        <Button onClick={createUser} variant="contained" type='submit' className="register-btn">Register</Button>
+                                        <Link className='text-blue-600' to="/">Sign in instead</Link>
+                                        <Button variant="contained" type='submit' className="register-btn">Register</Button>
                                     </div>
-                                </div>
+                                </form>
                         <img src={logo} alt="signupimg" className='w-[216px] h-[292px] ml-9 mt-[92px]'></img>
                                 </div>
                     </div>

@@ -23,7 +23,7 @@ let router = createBrowserRouter([
         element:<Home/>
     },
     {
-        path:'err',
+        path:':err',
         element:<Err/>
     }
  ])

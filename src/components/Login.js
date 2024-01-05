@@ -14,7 +14,10 @@ function Login(){
            }).then(res => {
             console.log(res);
             navigate("home")
-        });
+        }).catch(error => {
+            const err = error.response.data.error.message
+            navigate(`/${err}`)
+          });
     }
     return(
         <>
@@ -25,15 +28,17 @@ function Login(){
                 <h3 className='text-2xl font-medium m-0'>Sign in</h3>
                 <p className='mt-[5px]'>Use your Fundoo Account</p>
                 </div>
+                <form onSubmit={e => {e.preventDefault(); chkUser()}} className="w-full flex flex-col items-center gap-[30px]">
                 <TextField className="w-4/5" id="email" variant="outlined" label="Email or Phone" required />
                 <div className='w-4/5 flex flex-col'>
                 <TextField id='password' className="w-full" type="password" label="Password" required />
                 <a href='../index.js'>Forgot Password</a>
                 </div>
                 <div className='w-4/5 flex justify-between items-center'>
-                    <Link to="/signup">Create account</Link>
-                    <Button onClick={chkUser} variant="contained" className="login-btn">Login</Button>
+                    <Link className='text-blue-600' to="/signup">Create account</Link>
+                    <Button type='submit' variant="contained" className="login-btn">Login</Button>
                 </div>
+                </form>
             </div>
             <div className='w-[30%] flex text-sm justify-between'>
                         <div><p>English(United States)</p></div>
