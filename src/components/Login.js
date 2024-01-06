@@ -11,7 +11,6 @@ function Login(){
             "email":email,
             "password":password
            }).then(res => {
-            console.log(res);
             navigate("home")
         }).catch(error => {
             const err = error.response.data.error.message
@@ -39,7 +38,7 @@ function Login(){
                 </div>
                 </form>
             </div>
-            <div className='w-[30%] flex text-sm justify-between'>
+            <div className='w-[30%] flex text-sm justify-between mt-[15px]'>
                         <div><p>English(United States)</p></div>
                         <div><pre>Help      Privacy     Terms</pre></div>
             </div>
