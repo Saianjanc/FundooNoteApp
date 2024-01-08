@@ -1,3 +1,4 @@
+import React from "react"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 function Err(){
@@ -5,9 +6,9 @@ function Err(){
     const { err } = useParams()
     const [count, setCount] = useState(8)
     useEffect(()=>{
-        setTimeout(()=>{setCount((count) => count - 1)},1000)
+        const timer = setTimeout(()=>{setCount((count) => count - 1)},1000)
         if (count===0) {
-            clearTimeout()
+            clearTimeout(timer)
             navigate("/")
         }
     },[navigate,count])

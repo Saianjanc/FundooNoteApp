@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from '../assets/signupimg.png'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -7,10 +8,10 @@ import axios from 'axios';
 function SignUp() {
     const navigate = useNavigate()
     const createUser = () => {
-        const email = document.getElementById('email').value
-        const password = document.getElementById('password').value
-        const fname = document.getElementById('fname').value
-        const lname = document.getElementById('lname').value
+        const email = (document.getElementById('email')as HTMLInputElement).value
+        const password = (document.getElementById('password')as HTMLInputElement).value
+        const fname = (document.getElementById('fname')as HTMLInputElement).value
+        const lname = (document.getElementById('lname')as HTMLInputElement).value
         axios.post("https://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp",{
             "firstName": fname,
             "lastName": lname,
@@ -26,8 +27,8 @@ function SignUp() {
     }
 
     function validateInput(){
-        const password = document.getElementById('password').value
-        const confirmpass = document.getElementById('confirmpass')
+        const password = (document.getElementById('password')as HTMLInputElement).value
+        const confirmpass = (document.getElementById('confirmpass')as HTMLInputElement)
         if(password !== confirmpass.value) {
             confirmpass.setCustomValidity("Passwords Don't Match");
           } else {

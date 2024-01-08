@@ -1,12 +1,13 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import axios  from 'axios';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 function Login(){
     const navigate = useNavigate()
     const chkUser = () => {
-        const email = document.getElementById('email').value
-        const password = document.getElementById('password').value
+        const email = (document.getElementById('email')as HTMLInputElement).value
+        const password = (document.getElementById('password')as HTMLInputElement).value
         axios.post("https://fundoonotes.incubation.bridgelabz.com/api/user/login",{
             "email":email,
             "password":password
