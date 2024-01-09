@@ -1,22 +1,15 @@
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import axios  from 'axios';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import {ChkUser} from '../utils/UserService'
+
 function Login(){
     const navigate = useNavigate()
-    const chkUser = () => {
+    const loginUser = () => {
         const email = (document.getElementById('email')as HTMLInputElement).value
         const password = (document.getElementById('password')as HTMLInputElement).value
-        axios.post("https://fundoonotes.incubation.bridgelabz.com/api/user/login",{
-            "email":email,
-            "password":password
-           }).then(res => {
-            navigate("home")
-        }).catch(error => {
-            const err = error.response.data.error.message
-            navigate(`/err/${err}`)
-          });
+        ChkUser(email,password,navigate)
     }
     return(
         <>
@@ -27,7 +20,7 @@ function Login(){
                 <h3 className='text-2xl font-medium m-0'>Sign in</h3>
                 <p className='mt-[5px]'>Use your Fundoo Account</p>
                 </div>
-                <form onSubmit={e => {e.preventDefault(); chkUser()}} className="w-full flex flex-col items-center gap-[30px]">
+                <form onSubmit={e => {e.preventDefault(); loginUser()}} className="w-full flex flex-col items-center gap-[30px]">
                 <TextField className="w-4/5" id="email" variant="outlined" label="Email or Phone" required />
                 <div className='w-4/5 flex flex-col'>
                 <TextField id='password' className="w-full" type="password" label="Password" required />

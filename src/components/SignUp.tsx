@@ -3,7 +3,7 @@ import logo from '../assets/signupimg.png'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { CreateUser } from '../utils/UserService';
 
 function SignUp() {
     const navigate = useNavigate()
@@ -12,18 +12,7 @@ function SignUp() {
         const password = (document.getElementById('password')as HTMLInputElement).value
         const fname = (document.getElementById('fname')as HTMLInputElement).value
         const lname = (document.getElementById('lname')as HTMLInputElement).value
-        axios.post("https://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp",{
-            "firstName": fname,
-            "lastName": lname,
-            "service": "advance",
-            "email": email,
-            "password": password
-          }).then(res => {
-            navigate("/home")
-        }).catch(error => {
-            const err = error.response.data.error.details.messages.email[0]
-            navigate(`/err/${err}`)
-          });
+        CreateUser(fname,lname,email,password,navigate)
     }
 
     function validateInput(){
