@@ -4,7 +4,7 @@ const BASEURL = "https://fundoonotes.incubation.bridgelabz.com/api/notes"
 
 const configForAddNotes = {
     headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
         Authorization: localStorage.getItem("accessToken")
     }
 }
@@ -16,14 +16,40 @@ const configForGetNotes = {
     }
 }
 
-export async function AddNote(noteObj:object){
+export async function addNote(noteObj:object){
     await axios.post(`${BASEURL}/addNotes`,noteObj,configForAddNotes).then(res => {
         })
         }
 
-export async function GetNote(){
+export async function getNote(){
     let data:any
     await axios.get(`${BASEURL}/getNotesList`,configForGetNotes).then(res => {
+        data=res.data.data.data
+        })
+        return data
+        }
+
+export async function getArchive(){
+    let data:any
+    await axios.get(`${BASEURL}/getArchiveNotesList`,configForGetNotes).then(res => {
+        data=res.data.data.data
+        })
+        return data
+        }
+
+export async function addArchive(noteObj:object){
+    await axios.post(`${BASEURL}/archiveNotes`,noteObj,configForAddNotes).then(res => {
+        })
+        }
+
+export async function deleteNote(noteObj:object){
+    await axios.post(`${BASEURL}/trashNotes`,noteObj,configForAddNotes).then(res => {
+        })
+        }
+
+export async function getTrash(){
+    let data:any
+    await axios.get(`${BASEURL}/getTrashNotesList`,configForGetNotes).then(res => {
         data=res.data.data.data
         })
         return data
