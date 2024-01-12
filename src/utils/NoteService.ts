@@ -47,6 +47,10 @@ export async function deleteNote(noteObj:object){
         })
         }
 
+export async function removeNote(noteObj:object){
+    await axios.post(`${BASEURL}/deleteForeverNotes`,noteObj,configForAddNotes)
+        }
+
 export async function getTrash(){
     let data:any
     await axios.get(`${BASEURL}/getTrashNotesList`,configForGetNotes).then(res => {

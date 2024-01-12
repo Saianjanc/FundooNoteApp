@@ -9,7 +9,11 @@ export async function ChkUser(email:string,password:string,navigate:Function){
            }).then(res => {
             navigate("notes")
             const usertoken = res.data.id
+            const userName = res.data.firstName+res.data.lastName
+            const email = res.data.email
             localStorage.setItem("accessToken",usertoken)
+            localStorage.setItem("userName",userName)
+            localStorage.setItem("userEmail",email)
         }).catch(error => {
             const err = error.response.data.error.message
             navigate(`/err/${err}`)

@@ -3,34 +3,45 @@ import NoteCard from './NoteCard'
 import TakeNote from './TakeNote'
 import { addArchive, addNote, deleteNote, getNote } from '../utils/NoteService'
 
+interface INoteObj{
+    title?:string,
+    noteIdList?:any,
+    isArchived?:boolean,
+    isDeleted?:boolean,
+    description?:string,
+    id?:string
+}
+
 function NotesContainer(){
-    const [runFlag,setRunFlag]=useState(false)
-    const [noteList,setNoteList]=useState<Array<object>>([])
+    const [noteList,setNoteList]=useState<Array<INoteObj>>([])
     const getNotes = async () => {
         const a = await getNote();
         const b = a.filter((ele:any)=>!ele.isArchived&&!ele.isDeleted)
         setNoteList(b)
     }
-    function updateList(noteObj:object,action:string){
+    function updateList(noteObj:INoteObj,action:string){
         if(action==="create"){
             setNoteList([...noteList, noteObj]);
-            setRunFlag((prevState)=>!prevState)
             addNote(noteObj)
         }else if(action==="archive"){
-            const c = noteList.filter((ele:any)=>!ele.isArchived&&!ele.isDeleted)
-            setNoteList(c)
-            setRunFlag((prevState)=>!prevState)
+            const v = noteList.findIndex((ele:INoteObj)=>ele.id===noteObj.id)
+            noteList.splice(v,1,noteObj)
+            setNoteList(prevList => {
+                return prevList.filter((ele:INoteObj)=>!ele.isArchived&&!ele.isDeleted)
+              })
             addArchive(noteObj)
         }else if(action==="trash"){
-            const d = noteList.filter((ele:any)=>!ele.isDeleted)
-            setRunFlag((prevState)=>!prevState)
-            setNoteList(d)
+            const v = noteList.findIndex((ele:INoteObj)=>ele.id===noteObj.id)
+            noteList.splice(v,1,noteObj)
+            setNoteList(prevList => {
+                return prevList.filter((ele:INoteObj)=>!ele.isArchived&&!ele.isDeleted)
+              })
             deleteNote(noteObj)
         }
     }
-    useEffect(()=>{getNotes()},[runFlag])
+    useEffect(()=>{getNotes()},[])
     return(<><center className='mt-[80px]'><TakeNote action={updateList} /><br/><div className='grid grid-cols-4 ml-[100px]'>
-    {noteList.map((note:any) => (<NoteCard note={note} action={updateList}/>))}
+    {noteList.map((note:any) => (<NoteCard key={note.id} note={note} action={updateList}/>))}
     </div>
     </center></>)
 }
