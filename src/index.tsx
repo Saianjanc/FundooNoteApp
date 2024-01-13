@@ -28,15 +28,15 @@ let router = createBrowserRouter([
         children:[
             {
                 path:'notes',
-                element:<NotesContainer/>,
+                element:<NotesContainer/>
             },
             {
                 path:'archive',
-                element:<ArchiveContainer/>,
+                element:<ArchiveContainer/>
             },
             {
                 path:'trash',
-                element:<TrashContainer/>,
+                element:<TrashContainer/>
             }
         ]
     },
@@ -53,20 +53,22 @@ let router = createBrowserRouter([
 function Dashboard() {
     const [openDrawer,setOpenDrawer] = useState(false)
     return(<>
-    <div className='w-full h-[48px] mt-[8px] border-b-2 flex items-center gap-[20px] fixed top-0'>
+    <div className='w-full h-[48px] mt-[8px] border-b-2 flex items-center gap-[20px] sticky top-0 bg-white z-10'>
         <button onClick={()=>{
             if (openDrawer){setOpenDrawer(false)}
             else{setOpenDrawer(true)}}
             } className='ml-[20px]'><MenuIcon/></button>
         <div className='w-[202px] h-[48px] pr-[30px]'>
-            <a href='/home' className='flex gap-[5px] items-center'>
+            <a href='/notes' className='flex gap-[5px] items-center'>
             <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" className='w-[40px] h-[40px]' alt='Head Logo'/>
             <p className='text-[#5f6368] text-2xl font-sans'>Keep</p>
             </a>
         </div>
     </div>
     <SidePanel open={openDrawer} setOpen={setOpenDrawer}/>
+    <div className={openDrawer?'ml-[300px]':'ml-[100px]'}>
     <Outlet />
+    </div>
     </>)
 }
 

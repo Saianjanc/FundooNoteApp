@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import NoteCard from './NoteCard'
 import TakeNote from './TakeNote'
-import { addArchive, addNote, deleteNote, getNote } from '../utils/NoteService'
+import { addArchive, addNote, deleteNote, getNote, updateNote } from '../utils/NoteService'
 
 interface INoteObj{
     title?:string,
@@ -37,10 +37,17 @@ function NotesContainer(){
                 return prevList.filter((ele:INoteObj)=>!ele.isArchived&&!ele.isDeleted)
               })
             deleteNote(noteObj)
+        }else if(action==="update"){
+            const v = noteList.findIndex((ele:INoteObj)=>ele.id===noteObj.id)
+            noteList.splice(v,1,noteObj)
+            setNoteList(prevList => {
+                return prevList.filter((ele:INoteObj)=>!ele.isArchived&&!ele.isDeleted)
+              })
+            updateNote(noteObj)
         }
     }
     useEffect(()=>{getNotes()},[])
-    return(<><center className='mt-[80px]'><TakeNote action={updateList} /><br/><div className='grid grid-cols-4 ml-[100px]'>
+    return(<><center><TakeNote note={{}} setOpenModal={()=>{}} action={updateList} edit=''/><br/><div className='flex flex-wrap ml-[75px]'>
     {noteList.map((note:any) => (<NoteCard key={note.id} note={note} action={updateList}/>))}
     </div>
     </center></>)

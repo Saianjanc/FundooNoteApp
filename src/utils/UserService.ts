@@ -7,7 +7,7 @@ export async function ChkUser(email:string,password:string,navigate:Function){
             "email":email,
             "password":password
            }).then(res => {
-            navigate("notes")
+            navigate("/notes")
             const usertoken = res.data.id
             const userName = res.data.firstName+res.data.lastName
             const email = res.data.email

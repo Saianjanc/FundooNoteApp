@@ -1,23 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import pin from '../assets/pin.svg'
 
 import IconButton from '@mui/material/IconButton';
 import { Redo,Undo,AddAlertOutlined,PaletteOutlined,PersonAddAltOutlined,MoreVertOutlined,ArchiveOutlined,ImageOutlined,Brush,CheckBoxOutlined } from '@mui/icons-material';
 
-function TakeNote({action}:{action:Function}){
+function TakeNote({action,note,setOpenModal,edit}:{action:Function,note:any,setOpenModal:Function,edit:string}){
     const [expandNote,setExpandNote] = useState(false)
     function addnote(){
-        let title=(document.getElementById('notetitle') as HTMLInputElement).value
-        let desc=(document.getElementById('notedesc') as HTMLInputElement).value
-        let noteobj = {title:title,description:desc}
-        action(noteobj,"create")
-        setExpandNote(false)
+        const title=(document.getElementById('notetitle') as HTMLInputElement).value
+        const desc=(document.getElementById('notedesc') as HTMLInputElement).value
+        if (edit!=="edit") {
+            const noteobj = {title:title,description:desc}
+            action(noteobj,"create")
+            setExpandNote(false)
+        }else{setOpenModal(false)
+            const noteobj = {title:title,description:desc,id:note.id,noteId:note.id,isArchived:note.isArchived,isDeleted:note.isDeleted}
+            action(noteobj,"update")}
     }
+    const editNote = ()=>{
+        if (edit==="edit") {setExpandNote(true)}
+    }
+    useEffect(()=>editNote())
     function openNote(){
-        return(<div className="w-[600px] h-[135.6px] border-gray-400 rounded-lg border-2 relative m-[10px]">
+        return(<div className="w-[600px] h-[135.6px] border-gray-400 rounded-lg border-2 relative m-[10px] bg-white">
             <div className='pt-[10px] pr-[10px] pl-[10px] pb-[4px]'>
-            <input type='text' defaultValue="" id='notetitle' className="w-full mb-[4px] text-base font-medium leading-6 pt-3; font-family: 'Google Sans', Roboto, Arial, sans-serif outline-none" placeholder='Title' />
-            <textarea id='notedesc' defaultValue="" className="h-full w-full font-normal leading-5; font-family: Roboto, Arial, sans-serif resize-none outline-none" placeholder='Take Note...'/>
+            {edit==="edit"?<input type='text' defaultValue={note.title} id='notetitle' className="w-full mb-[4px] text-base font-medium leading-6 pt-3; font-family: 'Google Sans', Roboto, Arial, sans-serif outline-none" placeholder='Title' />:<input type='text' defaultValue="" id='notetitle' className="w-full mb-[4px] text-base font-medium leading-6 pt-3; font-family: 'Google Sans', Roboto, Arial, sans-serif outline-none" placeholder='Title'/>}
+            {edit==="edit"?<textarea id='notedesc' defaultValue={note.description} className="h-full w-full font-normal leading-5; font-family: Roboto, Arial, sans-serif resize-none outline-none" placeholder='Take Note...'/>
+            :<textarea id='notedesc' defaultValue="" className="h-full w-full font-normal leading-5; font-family: Roboto, Arial, sans-serif resize-none outline-none" placeholder='Take Note...'/>}
             </div>
             <div className='mb-[4px] flex justify-between ml-[10px] mr-[10px]'>
             <div className="flex gap-[15px]">

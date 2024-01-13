@@ -17,9 +17,7 @@ const configForGetNotes = {
 }
 
 export async function addNote(noteObj:object){
-    await axios.post(`${BASEURL}/addNotes`,noteObj,configForAddNotes).then(res => {
-        })
-        }
+    await axios.post(`${BASEURL}/addNotes`,noteObj,configForAddNotes)}
 
 export async function getNote(){
     let data:any
@@ -38,18 +36,13 @@ export async function getArchive(){
         }
 
 export async function addArchive(noteObj:object){
-    await axios.post(`${BASEURL}/archiveNotes`,noteObj,configForAddNotes).then(res => {
-        })
-        }
+    await axios.post(`${BASEURL}/archiveNotes`,noteObj,configForAddNotes)}
 
 export async function deleteNote(noteObj:object){
-    await axios.post(`${BASEURL}/trashNotes`,noteObj,configForAddNotes).then(res => {
-        })
-        }
+    await axios.post(`${BASEURL}/trashNotes`,noteObj,configForAddNotes)}
 
 export async function removeNote(noteObj:object){
-    await axios.post(`${BASEURL}/deleteForeverNotes`,noteObj,configForAddNotes)
-        }
+    await axios.post(`${BASEURL}/deleteForeverNotes`,noteObj,configForAddNotes)}
 
 export async function getTrash(){
     let data:any
@@ -58,3 +51,6 @@ export async function getTrash(){
         })
         return data
         }
+
+export async function updateNote(noteObj:object){
+    await axios.post(`${BASEURL}/updateNotes`,noteObj,configForAddNotes)}
