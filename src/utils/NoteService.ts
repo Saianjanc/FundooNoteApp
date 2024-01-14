@@ -54,3 +54,6 @@ export async function getTrash(){
 
 export async function updateNote(noteObj:object){
     await axios.post(`${BASEURL}/updateNotes`,noteObj,configForAddNotes)}
+
+export async function changeColor(noteObj:object){
+    await axios.post(`${BASEURL}/changesColorNotes`,noteObj,configForAddNotes)}
