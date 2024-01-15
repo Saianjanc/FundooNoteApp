@@ -2,14 +2,14 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {ChkUser} from '../utils/UserService'
+import { userLogin } from '../utils/UserService'
 
 function Login(){
     const navigate = useNavigate()
-    const loginUser = () => {
+    const loginUser = async () => {
         const email = (document.getElementById('email')as HTMLInputElement).value
         const password = (document.getElementById('password')as HTMLInputElement).value
-        ChkUser(email,password,navigate)
+        await userLogin(email,password,navigate)
     }
     return(
         <>

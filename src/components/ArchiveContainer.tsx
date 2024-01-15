@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { getArchive } from '../utils/NoteService'
+import { getArchive, addArchive, deleteNote, changeColor } from '../utils/NoteService'
 import NoteCard from './NoteCard';
-import { addArchive, addNote, deleteNote } from '../utils/NoteService'
 
 interface INoteObj{
     title?:string,
@@ -16,26 +15,21 @@ function ArchiveContainer() {
     const [noteList,setNoteList]=useState<Array<INoteObj>>([])
     const getNotes = async () => {
         const a = await getArchive();
-        setNoteList(a)
+        const b = a.filter((ele:any)=>!ele.isDeleted)
+        setNoteList(b)
     }
     function updateList(noteObj:INoteObj,action:string){
-        if(action==="create"){
-            setNoteList([...noteList, noteObj]);
-            addNote(noteObj)
-        }else if(action==="archive"){
             const noteIndex = noteList.findIndex((ele:INoteObj)=>ele.id===noteObj.id)
             noteList.splice(noteIndex,1,noteObj)
             setNoteList(prevList => {
                 return prevList.filter((ele:INoteObj)=>ele.isArchived&&!ele.isDeleted)
               })
+        if(action==="archive"){
             addArchive(noteObj)
         }else if(action==="trash"){
-            const noteIndex = noteList.findIndex((ele:INoteObj)=>ele.id===noteObj.id)
-            noteList.splice(noteIndex,1,noteObj)
-            setNoteList(prevList => {
-                return prevList.filter((ele:INoteObj)=>ele.isArchived&&!ele.isDeleted)
-              })
             deleteNote(noteObj)
+        }else if(action==="changeColor"){
+            changeColor(noteObj)
         }
     }
     useEffect(()=>{getNotes()},[])

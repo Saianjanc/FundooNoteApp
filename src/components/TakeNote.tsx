@@ -14,7 +14,7 @@ function TakeNote({action,note,setOpenModal,edit}:{action:Function,note:any,setO
             action(noteobj,"create")
             setExpandNote(false)
         }else{setOpenModal(false)
-            const noteobj = {title:title,description:desc,id:note.id,noteId:note.id,isArchived:note.isArchived,isDeleted:note.isDeleted}
+            const noteobj = {title:title,description:desc,id:note.id,noteId:note.id,isArchived:note.isArchived,isDeleted:note.isDeleted,color:note.color}
             action(noteobj,"update")}
     }
     const editNote = ()=>{

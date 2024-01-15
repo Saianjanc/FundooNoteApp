@@ -3,16 +3,16 @@ import logo from '../assets/signupimg.png'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Link, useNavigate } from 'react-router-dom';
-import { CreateUser } from '../utils/UserService';
+import { createUser } from '../utils/UserService';
 
 function SignUp() {
     const navigate = useNavigate()
-    const createUser = () => {
+    const newUser = () => {
         const email = (document.getElementById('email')as HTMLInputElement).value
         const password = (document.getElementById('password')as HTMLInputElement).value
         const fname = (document.getElementById('fname')as HTMLInputElement).value
         const lname = (document.getElementById('lname')as HTMLInputElement).value
-        CreateUser(fname,lname,email,password,navigate)
+        createUser(fname,lname,email,password,navigate)
     }
 
     function validateInput(){
@@ -22,7 +22,7 @@ function SignUp() {
             confirmpass.setCustomValidity("Passwords Don't Match");
           } else {
             confirmpass.setCustomValidity("")
-            createUser()
+            newUser()
           }
       }
 

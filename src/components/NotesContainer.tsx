@@ -19,7 +19,7 @@ function NotesContainer(){
         const b = a.filter((ele:any)=>!ele.isArchived&&!ele.isDeleted)
         setNoteList(b)
     }
-    function updateList(noteObj:INoteObj,action:string){
+    async function updateList(noteObj:INoteObj,action:string){
         if(action!=="create"){
             const v = noteList.findIndex((ele:INoteObj)=>ele.id===noteObj.id)
             noteList.splice(v,1,noteObj)
@@ -28,8 +28,9 @@ function NotesContainer(){
               })
         }
         if(action==="create"){
-            setNoteList([...noteList, noteObj]);
-            addNote(noteObj)
+            const note = await addNote(noteObj)
+            const newNote = {...noteObj,id:note.id,noteIdList:[note.id]}
+            setNoteList([...noteList, newNote]);
         }else if(action==="archive"){
             addArchive(noteObj)
         }else if(action==="trash"){
