@@ -34,7 +34,7 @@ function Dashboard() {
             </a>
         </div>
         </div>
-        <div className='xl:mr-[50px] relative'>
+        <div className='xl:mr-[20px] relative'>
             <IconButton onClick={handleClick}>
             <Circle sx={{ color: '#00CDB7', fontSize: 45 }}/>
             <span className='absolute top-[10px] left-[28px]'>{userName![0]}</span>
