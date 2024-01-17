@@ -31,7 +31,7 @@ function TrashContainer() {
         }
     }
     useEffect(()=>{getNotes()},[])
-    return(<div className='grid grid-cols-4 ml-[100px] mt-[80px]'>
+    return(<div className='flex flex-wrap ml-[35px] xl:ml-0'>
     {noteList.map((note:any) => (<NoteCard key={note.id} note={note} action={updateList}/>))}
     </div>)
 }

@@ -31,7 +31,7 @@ function SignUp() {
             <div className="w-full h-[735px] flex flex-col justify-center items-center">
                 <div className="flex justify-center">
                     <div className="flex border p-10 rounded-[10px] border-solid border-[#7777]">
-                        <form onSubmit={e => e.preventDefault()} className="flex w-3/5 flex-col justify-center gap-[30px]">
+                        <form onSubmit={e => e.preventDefault()} className="flex w-[260px] xl:w-[425px] flex-col justify-center gap-[30px]">
                         <label className="text-3xl text-[orange]">Fundoo</label>
                         <label className="text-2xl">Create your Fundoo Account</label>
                         <div className="flex justify-between">
@@ -54,10 +54,10 @@ function SignUp() {
                                         <Button onClick={validateInput} variant="contained" type='submit' className="register-btn">Register</Button>
                                     </div>
                                 </form>
-                        <img src={logo} alt="signupimg" className='w-[216px] h-[292px] ml-9 mt-[92px]'></img>
+                        <img src={logo} alt="signupimg" className='w-[216px] h-[292px] ml-9 mt-[92px] hidden xl:block'></img>
                                 </div>
                     </div>
-                    <div className='w-[51.5%] flex text-sm justify-center gap-[422px] mt-[15px]'>
+                    <div className='w-[260px] xl:w-[425px] flex text-sm justify-center xl:gap-[422px] mt-[15px]'>
                         <div><select className='border-[none]'><option>English (United States)</option></select></div>
                         <div><pre>Help      Privacy     Terms</pre></div>
                     </div>

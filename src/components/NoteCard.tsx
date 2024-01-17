@@ -50,10 +50,6 @@ function NoteCard({note,action}:{note:any,action:Function}) {
         action(noteObj,"remove")
     }
 
-    const editNote = ()=>{
-        setOpenModal(true)
-    }
-
     const pickColor = (e:any)=>{
         setColorMenu(e.currentTarget)
     }
@@ -65,9 +61,9 @@ function NoteCard({note,action}:{note:any,action:Function}) {
 
     return (
         <div className="flex flex-col justify-between h-[180px] min-h[103px] max-h-[385.2px] w-[240px] border-gray-400 rounded-lg border-2 relative m-[10px] group" style={{backgroundColor:note.color}}>
-        <div onClick={route==="/notes"?editNote:()=>{}} className='p-[10px]'>
+        <div onClick={route==="/trash"?()=>{}:()=>setOpenModal(true)} className='p-[10px]'>
         <input value={note.title} type='text' className="text-base font-medium leading-6 pt-3; font-family: 'Google Sans', Roboto, Arial, sans-serif mb-[4px] outline-none bg-transparent" placeholder='Title' readOnly/>
-        <textarea value={note.description} className="h-full w-full font-normal leading-5; font-family: Roboto, Arial, sans-serif resize-none outline-none bg-transparent" readOnly/>
+        <textarea value={note.description} className="h-full w-full font-normal leading-5; font-family: Roboto, Arial, sans-serif resize-none outline-none bg-transparent overflow-hidden" readOnly/>
             </div>
             <div className="hidden justify-around mb-[4px] group-hover:flex">
     {route==="/trash"?<><IconButton onClick={removeNote} title='DeleteForever'><DeleteForever/></IconButton><IconButton title='Restore' onClick={deleteNote}><RestoreFromTrash/></IconButton></>:
@@ -96,7 +92,7 @@ function NoteCard({note,action}:{note:any,action:Function}) {
         anchorEl={colorMenu}>
         <div className='flex'>
             <IconButton onClick={()=>noteColor('#FFFFFF')}><Block/></IconButton>
-            <IconButton onClick={()=>noteColor('#fcba03')}><Circle sx={{ color: '#fcba03' }}/></IconButton>
+            <IconButton onClick={()=>noteColor('#94bbe9')}><Circle sx={{ color: '#94bbe9' }}/></IconButton>
             <IconButton onClick={()=>noteColor('#32a852')}><Circle sx={{ color: '#32a852' }}/></IconButton>
             <IconButton onClick={()=>noteColor('#4287f5')}><Circle sx={{ color: '#4287f5' }}/></IconButton>
             <IconButton onClick={()=>noteColor('#FF5733')}><Circle sx={{ color: '#FF5733' }}/></IconButton>

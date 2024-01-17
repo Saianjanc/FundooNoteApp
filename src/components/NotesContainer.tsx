@@ -14,6 +14,7 @@ interface INoteObj{
 
 function NotesContainer(){
     const [noteList,setNoteList]=useState<Array<INoteObj>>([])
+    const [expandNote,setExpandNote] = useState(false)
     const getNotes = async () => {
         const a = await getNote();
         const b = a.filter((ele:any)=>!ele.isArchived&&!ele.isDeleted)
@@ -21,8 +22,8 @@ function NotesContainer(){
     }
     async function updateList(noteObj:INoteObj,action:string){
         if(action!=="create"){
-            const v = noteList.findIndex((ele:INoteObj)=>ele.id===noteObj.id)
-            noteList.splice(v,1,noteObj)
+            const noteIndex = noteList.findIndex((ele:INoteObj)=>ele.id===noteObj.id)
+            noteList.splice(noteIndex,1,noteObj)
             setNoteList(prevList => {
                 return prevList.filter((ele:INoteObj)=>!ele.isArchived&&!ele.isDeleted)
               })
@@ -43,10 +44,10 @@ function NotesContainer(){
 
     }
     useEffect(()=>{getNotes()},[])
-    return(<><center><TakeNote note={{}} setOpenModal={()=>{}} action={updateList} edit=''/><br/><div className='flex flex-wrap ml-[75px]'>
+    return(<div className='flex flex-col items-center'><TakeNote note={{}} expandNote={expandNote} setExpandNote={setExpandNote} action={updateList} edit=''/><br/><div onClick={()=>setExpandNote(false)} className='flex flex-wrap ml-[35px] xl:ml-0'>
     {noteList.map((note:any) => (<NoteCard key={note.id} note={note} action={updateList}/>))}
     </div>
-    </center></>)
+    </div>)
 }
 
 export default NotesContainer

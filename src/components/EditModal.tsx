@@ -12,7 +12,7 @@ function EditModal({note,setOpen,openModal,action}:{note:any,setOpen:Function,op
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <div className='absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]'>
-          <TakeNote note={note} setOpenModal={setOpen} action={action} edit="edit"/>
+          <TakeNote note={note} expandNote setExpandNote={setOpen} action={action} edit="edit"/>
         </div>
       </Modal>
         </>

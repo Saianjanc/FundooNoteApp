@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getArchive, addArchive, deleteNote, changeColor } from '../utils/NoteService'
+import { getArchive, addArchive, deleteNote, changeColor, updateNote } from '../utils/NoteService'
 import NoteCard from './NoteCard';
 
 interface INoteObj{
@@ -28,12 +28,14 @@ function ArchiveContainer() {
             addArchive(noteObj)
         }else if(action==="trash"){
             deleteNote(noteObj)
+        }else if(action==="update"){
+            updateNote(noteObj)
         }else if(action==="changeColor"){
             changeColor(noteObj)
         }
     }
     useEffect(()=>{getNotes()},[])
-    return(<div className='grid grid-cols-4 ml-[100px] mt-[80px]'>
+    return(<div className='flex flex-wrap ml-[35px] xl:ml-0'>
     {noteList.map((note:any) => (<NoteCard key={note.id} note={note} action={updateList}/>))}
     </div>)
 }

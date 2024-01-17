@@ -34,7 +34,7 @@ function Dashboard() {
             </a>
         </div>
         </div>
-        <div className='mr-[50px] relative'>
+        <div className='xl:mr-[50px] relative'>
             <IconButton onClick={handleClick}>
             <Circle sx={{ color: '#00CDB7', fontSize: 45 }}/>
             <span className='absolute top-[10px] left-[28px]'>{userName![0]}</span>
@@ -56,7 +56,7 @@ function Dashboard() {
       </Menu>
     </div>
     <SidePanel open={openDrawer} setOpen={setOpenDrawer}/>
-    <div className={openDrawer?'ml-[300px]':'ml-[100px]'}>
+    <div className={openDrawer?'ml-[60px] xl:ml-[350px]':'ml-[60px] xl:ml-[140px]'}>
     <Outlet />
     </div>
     </>)

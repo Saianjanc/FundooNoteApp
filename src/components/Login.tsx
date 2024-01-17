@@ -14,7 +14,7 @@ function Login(){
     return(
         <>
         <div className='flex h-[735px] w-full flex-col items-center justify-center' >
-            <div className='w-[30%] h-[465px] flex flex-col items-center gap-[30px] border rounded-[10px] border-solid border-[#7777]'>
+            <div className='w-[340px] xl:w-[455.75px] h-[465px] flex flex-col items-center gap-[30px] border rounded-[10px] border-solid border-[#7777]'>
                 <div className='text-center'>
                 <h2 className='text-[26px] font-medium text-[orange] m-[20px]'>Fundoo</h2>
                 <h3 className='text-2xl font-medium m-0'>Sign in</h3>
@@ -32,7 +32,7 @@ function Login(){
                 </div>
                 </form>
             </div>
-            <div className='w-[30%] flex text-sm justify-between mt-[15px]'>
+            <div className='w-[340px] xl:w-[455.75px] flex text-sm justify-between mt-[15px]'>
                         <div><p>English(United States)</p></div>
                         <div><pre>Help      Privacy     Terms</pre></div>
             </div>
