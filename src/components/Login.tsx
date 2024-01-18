@@ -9,6 +9,8 @@ function Login(){
     const loginUser = async () => {
         const email = (document.getElementById('email')as HTMLInputElement).value
         const password = (document.getElementById('password')as HTMLInputElement).value
+        const loginbtn = (document.getElementById('login-btn')as HTMLInputElement)
+        loginbtn.disabled=true
         await userLogin(email,password,navigate)
     }
     return(
@@ -28,13 +30,13 @@ function Login(){
                 </div>
                 <div className='w-4/5 flex justify-between items-center'>
                     <Link className='text-blue-600' to="/signup">Create account</Link>
-                    <Button type='submit' variant="contained" className="login-btn">Login</Button>
+                    <Button id='login-btn' type='submit' variant="contained">Login</Button>
                 </div>
                 </form>
             </div>
-            <div className='w-[340px] xl:w-[455.75px] flex text-sm justify-between mt-[15px]'>
-                        <div><p>English(United States)</p></div>
-                        <div><pre>Help      Privacy     Terms</pre></div>
+            <div className='w-[340px] xl:w-[455.75px] flex text-sm justify-center xl:gap-[90px] mt-[15px]'>
+            <div><select className='border-[none]'><option>English (United States)</option></select></div>
+            <div><pre>Help      Privacy     Terms</pre></div>
             </div>
         </div>
         </>

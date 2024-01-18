@@ -26,12 +26,12 @@ let router = createBrowserRouter([
         element:<Dashboard/>,
         children:[
             {
-                path:'notes',
+                path:'notes/:noteId?',
                 element:<NotesContainer/>
             },
             {
-                path:'archive',
-                element:<ArchiveContainer/>
+                path:'archive/:noteId?',
+                element:<ArchiveContainer/>,
             },
             {
                 path:'trash',

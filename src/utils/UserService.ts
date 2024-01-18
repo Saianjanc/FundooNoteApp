@@ -27,15 +27,9 @@ export async function userLogin(email:string,password:string,navigate:Function){
           });
         }
 
-export async function createUser(fname:string,lname:string,email:string,password:string,navigate:Function){
-    await axios.post(`${BASEURL}/userSignUp`,{
-            "firstName": fname,
-            "lastName": lname,
-            "service": "advance",
-            "email": email,
-            "password": password
-          }).then(res => {
-            navigate("/notes")
+export async function createUser(userObj:object,navigate:Function){
+    await axios.post(`${BASEURL}/userSignUp`,userObj).then(res => {
+            navigate("/")
         }).catch(error => {
             const err = error.response.data.error.details.messages.email[0]
             navigate(`/err/${err}`)

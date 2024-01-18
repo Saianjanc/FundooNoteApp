@@ -33,7 +33,7 @@ function TakeNote({action,note,expandNote,setExpandNote,edit}:{action:Function,n
     }
     useEffect(()=>editNote(),[])
     function openNote(){
-        return(<div className="w-[310px] xl:w-[600px] border-gray-400 rounded-lg border-2 relative m-[10px]" style={{backgroundColor:color}}>
+        return(<div className="w-[310px] xl:w-[600px] border-gray-400 rounded-lg border-2 relative m-[10px] bg-white" style={{backgroundColor:color}}>
             <div className='pt-[5px] pr-[10px] pl-[10px] pb-[2px]'>
             <Input type='text' defaultValue={(edit==="edit")?note.title:""} id='notetitle' className="w-full mb-[2px] text-base font-medium leading-6 pt-3; outline-none bg-transparent" placeholder='Title' disableUnderline={true} sx={{fontFamily:"unset",fontWeight:500}}/>
             <Input id='notedesc' defaultValue={(edit==="edit")?note.description:""} className="h-full w-full font-normal leading-5; font-family: Roboto, Arial, sans-serif resize-none outline-none bg-transparent" placeholder='Take Note...' disableUnderline={true} multiline={true} minRows={2} maxRows={(edit==="edit")?6:2} sx={{fontFamily:"unset",fontWeight:500}}/>

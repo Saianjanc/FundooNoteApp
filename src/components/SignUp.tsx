@@ -12,7 +12,15 @@ function SignUp() {
         const password = (document.getElementById('password')as HTMLInputElement).value
         const fname = (document.getElementById('fname')as HTMLInputElement).value
         const lname = (document.getElementById('lname')as HTMLInputElement).value
-        createUser(fname,lname,email,password,navigate)
+        const userObj = {
+            "firstName": fname,
+            "lastName": lname,
+            "service": "advance",
+            "email": email,
+            "password": password
+          }
+        localStorage.clear()
+        createUser(userObj,navigate)
     }
 
     function validateInput(){
@@ -20,7 +28,7 @@ function SignUp() {
         const confirmpass = (document.getElementById('confirmpass')as HTMLInputElement)
         if(password !== confirmpass.value) {
             confirmpass.setCustomValidity("Passwords Don't Match");
-          } else {
+          } else if(password) {
             confirmpass.setCustomValidity("")
             newUser()
           }
@@ -31,7 +39,7 @@ function SignUp() {
             <div className="w-full h-[735px] flex flex-col justify-center items-center">
                 <div className="flex justify-center">
                     <div className="flex border p-10 rounded-[10px] border-solid border-[#7777]">
-                        <form onSubmit={e => e.preventDefault()} className="flex w-[260px] xl:w-[425px] flex-col justify-center gap-[30px]">
+                        <form onSubmit={e => e.preventDefault()} className="flex w-[290px] xl:w-[425px] flex-col justify-center gap-[30px]">
                         <label className="text-3xl text-[orange]">Fundoo</label>
                         <label className="text-2xl">Create your Fundoo Account</label>
                         <div className="flex justify-between">
@@ -51,7 +59,7 @@ function SignUp() {
                                     </div>
                                     <div className="w-full flex justify-between items-center">
                                         <Link className='text-blue-600' to="/">Sign in instead</Link>
-                                        <Button onClick={validateInput} variant="contained" type='submit' className="register-btn">Register</Button>
+                                        <Button onClick={validateInput} variant="contained" type='submit'>Register</Button>
                                     </div>
                                 </form>
                         <img src={logo} alt="signupimg" className='w-[216px] h-[292px] ml-9 mt-[92px] hidden xl:block'></img>
