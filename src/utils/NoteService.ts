@@ -20,19 +20,21 @@ export async function addNote(noteObj:object){
         return data
     }
 
-export async function getNote(){
+export async function getNote(setLoaded:Function){
     let data:any
     await axios.get(`${BASEURL}/getNotesList`,configForNotes()).then(res => {
         data=res.data.data.data
         })
+        setLoaded(true)
         return data
     }
 
-export async function getArchive(){
+export async function getArchive(setLoaded:Function){
     let data:any
     await axios.get(`${BASEURL}/getArchiveNotesList`,configForNotes()).then(res => {
         data=res.data.data.data
         })
+        setLoaded(true)
         return data
         }
 

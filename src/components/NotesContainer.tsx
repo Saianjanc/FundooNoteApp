@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import NoteCard from './NoteCard'
 import TakeNote from './TakeNote'
 import { addArchive, addNote, changeColor, deleteNote, getNote, updateNote } from '../utils/NoteService'
+import { CircularProgress } from '@mui/material'
 
 interface INoteObj{
     title?:string,
@@ -15,8 +16,9 @@ interface INoteObj{
 function NotesContainer(){
     const [noteList,setNoteList]=useState<Array<INoteObj>>([])
     const [expandNote,setExpandNote] = useState(false)
+    const [loaded,setLoaded] = useState(false)
     const getNotes = async () => {
-        const a = await getNote();
+        const a = await getNote(setLoaded);
         const b = a.filter((ele:any)=>!ele.isArchived&&!ele.isDeleted)
         setNoteList(b)
     }
@@ -45,7 +47,7 @@ function NotesContainer(){
     }
     useEffect(()=>{getNotes()},[])
     return(<div className='flex flex-col items-center'><TakeNote note={{}} expandNote={expandNote} setExpandNote={setExpandNote} action={updateList} edit=''/><br/><div onClick={()=>setExpandNote(false)} className='flex flex-wrap ml-[35px] xl:ml-0'>
-    {noteList.map((note:any) => (<NoteCard key={note.id} note={note} action={updateList}/>))}
+    {loaded?noteList.map((note:any) => (<NoteCard key={note.id} note={note} action={updateList}/>)):<CircularProgress/>}
     </div>
     </div>)
 }
