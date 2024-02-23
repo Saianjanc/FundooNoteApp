@@ -21,14 +21,14 @@ function Dashboard() {
         localStorage.clear()
     }
     return(<>
-    <div className='w-full h-[48px] mt-[8px] border-b-2 flex items-center sticky top-0 bg-white z-10 justify-between'>
+    <div className='w-full h-[55px] border-b-2 flex items-center sticky top-0 bg-white z-10 justify-between'>
         <div className='flex gap-[20px]'>
         <button onClick={()=>{
             if (openDrawer){setOpenDrawer(false)}
             else{setOpenDrawer(true)}}
             } className='ml-[20px]'><MenuOutlined/></button>
         <div className='h-[48px] pr-[30px]'>
-            <a href='/notes' className='flex gap-[5px] items-center'>
+            <a href='/notes' className='flex gap-[5px] items-center mt-[5px]'>
             <img src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" className='w-[40px] h-[40px]' alt='Head Logo'/>
             <p className='text-[#5f6368] text-2xl font-sans'>Keep</p>
             </a>
